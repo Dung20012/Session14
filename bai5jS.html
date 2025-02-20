@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let rectangle = {
+            width: 10,
+            height: 5,
+            color: "blue"
+        };
+
+        // duyệt thuộc tính và in ra màn hình
+        for (let key in rectangle) { // duyệt qua thuộc tính (key) của đối tượng
+            console.log(`${key}: ${rectangle[key]}`); // key chứa tên thuộc tính của đối tượng ở mỗi vòng lặp
+        }
+
+        // tính diện tích hình chữ nhật
+        let area = rectangle.width * rectangle.height;
+        console.log("Diện tích hình chữ nhật:", area);
+    </script>
+</body>
+</html>
