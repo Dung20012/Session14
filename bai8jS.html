@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let employees = [];
+
+        while (true) {
+            let choice = prompt("--- QUẢN LÝ NHÂN VIÊN ---\n1. Thêm nhân viên mới\n2. Hiển thị danh sách nhân viên\n3. Tìm kiếm nhân viên theo tên\n4. Cập nhật thông tin nhân viên theo ID\n5. Xóa nhân viên theo ID\n6. Tính lương trung bình của nhân viên\n7. Thoát chương trình\nNhập lựa chọn của bạn:");
+            
+            if (choice === "1") {
+                let id = prompt("Nhập ID:");
+                let name = prompt("Nhập tên nhân viên:");
+                let position = prompt("Nhập chức vụ:");
+                let salary = parseFloat(prompt("Nhập mức lương:"));
+                employees.push({ id, name, position, salary });
+                console.log("Nhân viên đã được thêm thành công!\n");
+            } else if (choice === "2") {
+                if (employees.length === 0) {
+                    console.log("Danh sách nhân viên trống.\n");
+                } else {
+                    console.log("Danh sách nhân viên:");
+                    employees.forEach(emp => console.log(`ID: ${emp.id}, Tên: ${emp.name}, Chức vụ: ${emp.position}, Lương: ${emp.salary}`));
+                    console.log("");
+                }
+            } else if (choice === "3") {
+                let keyword = prompt("Nhập tên nhân viên cần tìm:").toLowerCase();
+                let found = employees.filter(emp => emp.name.toLowerCase().includes(keyword));
+                if (found.length === 0) {
+                    console.log("Không tìm thấy nhân viên nào.\n");
+                } else {
+                    console.log("Kết quả tìm kiếm:");
+                    found.forEach(emp => console.log(`ID: ${emp.id}, Tên: ${emp.name}, Chức vụ: ${emp.position}, Lương: ${emp.salary}`));
+                    console.log("");
+                }
+            } else if (choice === "4") {
+                let id = prompt("Nhập ID nhân viên cần cập nhật:");
+                let employee = employees.find(emp => emp.id === id);
+                if (!employee) {
+                    console.log("Không tìm thấy nhân viên!\n");
+                } else {
+                    let newName = prompt("Nhập tên mới:") || employee.name;
+                    let newPosition = prompt("Nhập chức vụ mới:") || employee.position;
+                    let newSalary = prompt("Nhập mức lương mới:");
+                    employee.name = newName;
+                    employee.position = newPosition;
+                    if (newSalary) employee.salary = parseFloat(newSalary);
+                    console.log("Thông tin nhân viên đã được cập nhật!\n");
+                }
+            } else if (choice === "5") {
+                let id = prompt("Nhập ID nhân viên cần xóa:");
+                let index = employees.findIndex(emp => emp.id === id);
+                if (index === -1) {
+                    console.log("Không tìm thấy nhân viên!\n");
+                } else {
+                    employees.splice(index, 1);
+                    console.log("Nhân viên đã được xóa!\n");
+                }
+            } else if (choice === "6") {
+                if (employees.length === 0) {
+                    console.log("Không có dữ liệu nhân viên.\n");
+                } else {
+                    let totalSalary = employees.reduce((sum, emp) => sum + emp.salary, 0);
+                    console.log(`Mức lương trung bình của nhân viên là: ${(totalSalary / employees.length).toFixed(2)}\n`);
+                }
+            } else if (choice === "7") {
+                console.log("Thoát chương trình.");
+                break;
+            } else {
+                console.log("Lựa chọn không hợp lệ, vui lòng nhập lại!\n");
+            }
+        }
+    </script>
+</body>
+</html>
