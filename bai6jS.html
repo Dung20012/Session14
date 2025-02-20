@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let students = [];
+
+        // Thêm sinh viên
+        let student1 = { name: "Alice", age: 20, id: "SV001" };
+        let student2 = { name: "Bob", age: 22, id: "SV002" };
+        let student3 = { name: "Charlie", age: 21, id: "SV003" };
+
+        // Kiểm tra xem có trùng ID hay k
+        if (!students.some(student => student.id === student1.id)) students.push(student1);
+        if (!students.some(student => student.id === student2.id)) students.push(student2);
+        if (!students.some(student => student.id === student3.id)) students.push(student3);
+
+     
+        console.log("Danh sách sinh viên:");
+        for (let i = 0; i < students.length; i++) {
+            console.log(`ID: ${students[i].id}, Tên: ${students[i].name}, Tuổi: ${students[i].age}`);
+        }
+
+        // Xóa sinh viên theo ID
+        let removeId = "SV002";
+        let indexToRemove = -1;
+
+        for (let i = 0; i < students.length; i++) {
+            if (students[i].id === removeId) {
+                indexToRemove = i;
+                break;
+            }
+        }
+
+        if (indexToRemove !== -1) {
+            console.log(`Đã xóa sinh viên: ${students[indexToRemove].name}, ID: ${students[indexToRemove].id}`);
+            students.splice(indexToRemove, 1);
+        } else {
+            console.log(`Không tìm thấy sinh viên với ID: ${removeId}`);
+        }
+
+       
+        console.log("Danh sách sinh viên sau khi xóa:");
+        for (let i = 0; i < students.length; i++) {
+            console.log(`ID: ${students[i].id}, Tên: ${students[i].name}, Tuổi: ${students[i].age}`);
+        }
+    </script>
+</body>
+</html>
