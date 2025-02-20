@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let books = [];
+
+        let choice;
+        do {
+            console.log("--- QUẢN LÝ SÁCH ---");
+            console.log("1. Thêm sách mới");
+            console.log("2. Hiển thị danh sách sách");
+            console.log("3. Tìm kiếm sách theo tên");
+            console.log("4. Xóa sách theo ID");
+            console.log("5. Thoát chương trình");
+
+            choice = prompt("Nhập lựa chọn của bạn:");
+
+            if (choice === "1") {
+                let id = prompt("Nhập ID sách:");
+                let name = prompt("Nhập tên sách:");
+                let author = prompt("Nhập tên tác giả:"); // tác giả
+                let year = prompt("Nhập năm xuất bản:");
+                books.push({ id, name, author, year }); // sách
+                console.log("Sách đã được thêm thành công!");
+            } 
+            else if (choice === "2") {
+                if (books.length === 0) {
+                    console.log("Danh sách sách trống.");
+                } else {
+                    console.log("Danh sách sách:");
+                    books.forEach(book => {
+                        console.log(`ID: ${book.id}, Tên: ${book.name}, Tác giả: ${book.author}, Năm: ${book.year}`);
+                    });
+                }
+            } 
+            else if (choice === "3") {
+                let keyword = prompt("Nhập từ khóa tìm kiếm:").toLowerCase();
+                let results = books.filter(book => book.name.toLowerCase().includes(keyword));
+                if (results.length === 0) {
+                    console.log("Không tìm thấy sách nào.");
+                } else {
+                    console.log("Kết quả tìm kiếm:");
+                    results.forEach(book => {
+                        console.log(`ID: ${book.id}, Tên: ${book.name}, Tác giả: ${book.author}, Năm: ${book.year}`);
+                    });
+                }
+            } 
+            else if (choice === "4") {
+                let id = prompt("Nhập ID sách cần xóa:");
+                let index = books.findIndex(book => book.id === id);
+                if (index !== -1) {
+                    books.splice(index, 1);
+                    console.log("Sách đã được xóa thành công!");
+                } else {
+                    console.log("Không tìm thấy sách với ID này.");
+                }
+            } 
+            else if (choice === "5") {
+                console.log("Chương trình kết thúc.");
+            } 
+            else {
+                console.log("Lựa chọn không hợp lệ. Vui lòng nhập lại!");
+            }
+        } while (choice !== "5");
+    </script>
+</body>
+</html>
